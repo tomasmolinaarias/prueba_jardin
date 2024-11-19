@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <title>Página Principal</title>
+    <link rel="stylesheet" href="{% static 'css/pagina_principal.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/contacto/">Contacto</a>
+            <a href="/login/">Iniciar Sesión</a>
+        </nav>
+    </header>
+    <main>
+        <h1>Bienvenidos al Jardín Infantil y Guardería</h1>
+        <p class="subtitulo">Nuestro compromiso es cuidar y educar a los más pequeños con amor y dedicación.</p>
+        <section>
+            <h2>Horarios</h2>
+            <ul>
+                <li><strong>Jardín Infantil:</strong> 08:00 AM - 03:00 PM</li>
+                <li><strong>Guardería:</strong> 08:00 AM - 06:00 PM</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Servicios</h2>
+            <ul>
+                <li>Actividades educativas</li>
+                <li>Alimentación saludable</li>
+                <li>Personal capacitado</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Eventos Generales</h2>
+            <ul class="eventos-lista">
+                {% for evento in eventos %}
+                    <li>
+                        <strong>{{ evento.titulo }}</strong>
+                        <span>{{ evento.fecha }}</span>
+                        <span>{{ evento.descripcion }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+        
+    </main>
+    <footer>
+        <p>&copy; 2024 Jardín Infantil y Guardería</p>
+        <p>
+            <a href="/politicas/">Políticas de privacidad</a> | 
+            <a href="/contacto/">Contacto</a>
+        </p>
+    </footer>
+</body>
+</html>

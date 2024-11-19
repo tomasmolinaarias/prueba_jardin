@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/contacto/contacto.css' %}">
+    <title>Contáctanos</title>
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/contacto/">Contacto</a></li>
+                <li><a href="/login/">Iniciar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main>
+        <h1>Contáctanos</h1>
+
+        <!-- Quiénes Somos -->
+        <section class="quienes-somos">
+            <h2>¿Quiénes somos?</h2>
+            <p>
+                Somos un jardín infantil y guardería comprometidos con el bienestar y la educación integral de los niños. 
+                Nuestro equipo está compuesto por personal capacitado y dedicado a fomentar un entorno de aprendizaje seguro y afectivo.
+            </p>
+        </section>
+
+        <!-- Formulario de Contacto -->
+        <section class="formulario-contacto">
+            <h2>Envíanos un mensaje</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" id="nombre" placeholder="Tu nombre" required>
+                
+                <label for="email">Correo electrónico:</label>
+                <input type="email" name="email" id="email" placeholder="Tu correo electrónico" required>
+                
+                <label for="mensaje">Mensaje:</label>
+                <textarea name="mensaje" id="mensaje" placeholder="Escribe tu mensaje aquí" required></textarea>
+                
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Jardín Infantil y Guardería</p>
+        <p><a href="/politicas/">Políticas de Privacidad</a> | <a href="/contacto/">Contacto</a></p>
+    </footer>
+</body>
+</html>

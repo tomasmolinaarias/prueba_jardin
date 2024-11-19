@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Eventos</title>
+    <link rel="stylesheet" href="{% static 'css/apoderado_vista/eventos.css' %}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="{% url 'pagina_apoderado' %}">⬅ Volver al Panel</a>
+            <a href="{% url 'logout' %}">Cerrar Sesión</a>
+        </nav>
+    </header>
+    <main>
+        <h1>Eventos</h1>
+        <div class="events-container">
+            {% for evento in eventos %}
+            <div class="event-card">
+                <h2>{{ evento.nombre }}</h2>
+                <p>{{ evento.descripcion }}</p>
+                <p class="date-time">{{ evento.fecha }} - {{ evento.hora }}</p>
+                <p class="location">{{ evento.lugar }}</p>
+            </div>
+            {% empty %}
+            <p>No hay eventos disponibles.</p>
+            {% endfor %}
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Jardín Infantil y Guardería</p>
+    </footer>
+</body>
+</html>

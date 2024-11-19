@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>{% if util %}Editar Útil{% else %}Agregar Útil{% endif %}</title>
+    <link rel="stylesheet" href="{% static 'css/utiles/agregar_util.css' %}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="{% url 'gestionar_utiles' %}">⬅ Volver a Gestión</a>
+            <a href="{% url 'logout' %}">Cerrar Sesión</a>
+        </nav>
+    </header>
+    <main>
+        <div class="form-container">
+            <h1>{% if util %}Editar Útil{% else %}Agregar Útil{% endif %}</h1>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="nombre">Nombre del Útil:</label>
+                    <input type="text" id="nombre" name="nombre" value="{{ util.nombre|default_if_none:'' }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="cantidad">Cantidad:</label>
+                    <input type="number" id="cantidad" name="cantidad" value="{{ util.cantidad|default_if_none:1 }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripción:</label>
+                    <textarea id="descripcion" name="descripcion" required>{{ util.descripcion|default_if_none:'' }}</textarea>
+                </div>
+                <button type="submit" class="btn">{% if util %}Actualizar{% else %}Agregar{% endif %}</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Jardín Infantil y Guardería</p>
+    </footer>
+</body>
+</html>

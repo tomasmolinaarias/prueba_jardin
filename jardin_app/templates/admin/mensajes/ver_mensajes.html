@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Mensajes</title>
+    <link rel="stylesheet" href="{% static 'css/mensajes/ver_mensaje.css' %}">
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <a href="{% url 'pagina_administrador' %}">⬅ Volver al Dashboard</a>
+            <a href="{% url 'logout' %}">Cerrar Sesión</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="table-container">
+            <h1>Gestión de Mensajes</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Apoderado</th>
+                        <th>Mensaje</th>
+                        <th>Estado</th>
+                        <th>Fecha Envío</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for mensaje in mensajes %}
+                    <tr>
+                        <td>{{ mensaje.id }}</td>
+                        <td>{{ mensaje.apoderado.nombre }}</td>
+                        <td>{{ mensaje.mensaje|truncatechars:50 }}</td>
+                        <td>{{ mensaje.estado }}</td>
+                        <td>{{ mensaje.fecha_envio|date:"d/m/Y H:i" }}</td>
+                        <td>
+                            <a href="{% url 'ver_mensaje' mensaje.id %}" class="btn btn-view">Ver</a>
+                            {% if mensaje.estado == "Pendiente" %}
+                            <a href="{% url 'responder_mensaje' mensaje.id %}" class="btn btn-reply">Responder</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6">No hay mensajes registrados.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Jardín Infantil y Guardería</p>
+        <p>
+            <a href="{% url 'formulario_contacto' %}">Contacto</a> | 
+            <a href="/politicas/">Políticas de Privacidad</a>
+        </p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="{% static 'css/auth_session/iniciar_sesion.css' %}">
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/contacto/">Contacto</a></li>
+                <li><a href="/login/">Iniciar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main>
+        <div class="login-container">
+            <h1>Iniciar Sesión</h1>
+            <form method="POST">
+                {% csrf_token %}
+                <label for="username">Usuario:</label>
+                <input type="text" name="username" required>
+                <label for="password">Contraseña:</label>
+                <input type="password" name="password" required>
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Jardín Infantil y Guardería</p>
+        <p><a href="/politicas/">Políticas de Privacidad</a> | <a href="/contacto/">Contacto</a></p>
+    </footer>
+</body>
+</html>

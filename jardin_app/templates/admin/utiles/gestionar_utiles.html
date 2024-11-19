@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Gestión de Útiles</title>
+    <link rel="stylesheet" href="{% static 'css/utiles/gestionar_utiles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <a href="{% url 'pagina_administrador' %}">⬅ Volver al Dashboard</a>
+            <a href="{% url 'logout' %}">Cerrar Sesión</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="table-container">
+            <h1>Gestión de Útiles</h1>
+            <div class="actions">
+                <a href="{% url 'agregar_util' %}" class="btn btn-add">Agregar Útil</a>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Cantidad</th>
+                        <th>Descripción</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for util in utiles %}
+                    <tr>
+                        <td>{{ util.id }}</td>
+                        <td>{{ util.nombre }}</td>
+                        <td>{{ util.cantidad }}</td>
+                        <td>{{ util.descripcion }}</td>
+
+                        <td>
+                            <a href="{% url 'editar_util' util.id %}" class="btn btn-edit"> <i class="fa fa-edit"></i> </a>
+                            <a href="{% url 'eliminar_util' util.id %}" class="btn btn-delete" onclick="return confirm('¿Estás seguro de eliminar este evento?');"><i class="fa fa-trash"></i> </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5">No hay útiles registrados.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Jardín Infantil y Guardería</p>
+    </footer>
+</body>
+</html>

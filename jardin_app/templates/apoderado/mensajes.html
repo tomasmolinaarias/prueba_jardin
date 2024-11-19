@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Mensajes</title>
+    <link rel="stylesheet" href="{% static 'css/apoderado_vista/mensajes.css' %}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="{% url 'pagina_apoderado' %}">⬅ Volver al Panel</a>
+            <a href="{% url 'logout' %}">Cerrar Sesión</a>
+        </nav>
+    </header>
+    <main>
+        <h1>Mensajes</h1>
+        <a href="{% url 'enviar_mensaje' %}" class="btn btn-send">Enviar Mensaje</a>
+        <ul>
+            {% for mensaje in mensajes %}
+            <li>
+                <strong>{{ mensaje.mensaje }}</strong>
+                <p>Estado: {{ mensaje.estado }}</p>
+                {% if mensaje.respuesta %}
+                <p>Respuesta: {{ mensaje.respuesta }}</p>
+                {% endif %}
+            </li>
+            {% empty %}
+            <p>No has enviado mensajes.</p>
+            {% endfor %}
+        </ul>
+    </main>
+    <footer>
+        <p>&copy; 2024 Jardín Infantil y Guardería</p>
+    </footer>
+</body>
+</html>

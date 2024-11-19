@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <title>Contacto Enviado</title>
+    <link rel="stylesheet" href="{% static 'css/contacto/contacto_exitoso.css' %}">
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/contacto/">Contacto</a>
+            <a href="/login/">Iniciar Sesión</a>
+        </nav>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="container">
+        <h1>¡Gracias por tu mensaje!</h1>
+        <p>Nos pondremos en contacto contigo lo antes posible.</p>
+        <button onclick="window.location.href='/'">Volver al Inicio</button>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Jardín Infantil y Guardería</p>
+        <p><a href="/politicas/">Políticas de Privacidad</a> | <a href="/contacto/">Contacto</a></p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Gestionar Apoderados</title>
+    <link rel="stylesheet" href="{% static 'css/apoderado/gestionar_apoderados.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="{% url 'pagina_administrador' %}">Volver al Dashboard</a>
+            <a href="{% url 'logout' %}">Cerrar Sesión</a>
+        </nav>
+    </header>
+    <main>
+        <h1>Gestión de Apoderados</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>RUT</th>
+                    <th>Teléfono</th>
+                    <th>Email</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for apoderado in apoderados %}
+                <tr>
+                    <td>{{ apoderado.id }}</td>
+                    <td>{{ apoderado.nombre }}</td>
+                    <td>{{ apoderado.apellido_paterno }}</td>
+                    <td>{{ apoderado.apellido_materno }}</td>
+                    <td>{{ apoderado.rut }}</td>
+                    <td>{{ apoderado.telefono }}</td>
+                    <td>{{ apoderado.email }}</td>
+                    <td class="table-actions">
+                        <a href="{% url 'editar_apoderado' apoderado.id %}" class="btn btn-edit">
+                            <i class="fa fa-edit"></i> 
+                        </a>
+                        <a href="{% url 'eliminar_apoderado' apoderado.id %}" class="btn btn-delete" onclick="return confirm('¿Estás seguro de eliminar este apoderado?');">
+                            <i class="fa fa-trash"></i> 
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="8">No hay apoderados registrados.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        <p>&copy; 2024 Jardín Infantil y Guardería</p>
+    </footer>
+</body>
+</html>

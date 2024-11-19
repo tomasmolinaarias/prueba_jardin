@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Panel del Apoderado</title>
+    <link rel="stylesheet" href="{% static 'css/apoderado_dashboard.css' %}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="{% url 'logout' %}">Cerrar Sesión</a>
+        </nav>
+    </header>
+    <main>
+        <h1>Bienvenido, {{ request.user.apoderado.nombre }}</h1>
+        <div class="links">
+            <a href="{% url 'ver_eventos_apoderado' %}">Ver Eventos</a>
+            <a href="{% url 'ver_lista_utiles_apoderado' %}">Ver Lista de Útiles</a>
+            <a href="{% url 'ver_mensajes_apoderado' %}">Mensajes</a>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Jardín Infantil y Guardería</p>
+    </footer>
+</body>
+</html>

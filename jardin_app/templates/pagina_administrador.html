@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <title>Panel de Administración</title>
+    <link rel="stylesheet" href="{% static 'css/admin_dashboard.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/logout/">Cerrar Sesión</a>
+        </nav>
+    </header>
+    <main>
+        <h1>Panel de Administración</h1>
+        <p class="subtitulo">Bienvenido al Panel de Gestión</p>
+
+        <div class="panel-container">
+            <section class="gestion">
+                <h2>Gestión</h2>
+                <ul>
+                    <li><a href="/dashboard/admin/niños/">Gestionar Niños</a></li>
+                    <li><a href="/dashboard/admin/apoderados/">Gestionar Apoderados</a></li>
+                    <li><a href="/dashboard/admin/eventos/">Gestionar Eventos</a></li>
+                    <li><a href="/dashboard/admin/utiles/">Gestionar Lista de Útiles</a></li>
+                </ul>
+            </section>
+
+            <section class="mensajes">
+                <h2>Mensajes y Solicitudes</h2>
+                <ul>
+                    <li><a href="/dashboard/admin/mensajes/">Ver Mensajes</a></li>
+                    <li><a href="/dashboard/admin/solicitudes/">Ver Solicitudes de Contacto</a></li>
+                </ul>
+            </section>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Jardín Infantil y Guardería</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Mensaje</title>
+    <link rel="stylesheet" href="{% static 'css/mensajes/verMensaje.css' %}">
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <a href="{% url 'ver_mensajes' %}">⬅ Volver a Mensajes</a>
+            <a href="{% url 'logout' %}">Cerrar Sesión</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <h1>Detalle del Mensaje</h1>
+            <table class="details-table">
+                <tr>
+                    <th>Mensaje</th>
+                    <td>{{ mensaje.mensaje }}</td>
+                </tr>
+                <tr>
+                    <th>Estado</th>
+                    <td>{{ mensaje.estado }}</td>
+                </tr>
+                <tr>
+                    <th>Respuesta</th>
+                    <td>{{ mensaje.respuesta|default:"Sin respuesta" }}</td>
+                </tr>
+                <tr>
+                    <th>Fecha de Envío</th>
+                    <td>{{ mensaje.fecha_envio|date:"d/m/Y H:i" }}</td>
+                </tr>
+                {% if mensaje.fecha_respuesta %}
+                <tr>
+                    <th>Fecha de Respuesta</th>
+                    <td>{{ mensaje.fecha_respuesta|date:"d/m/Y H:i" }}</td>
+                </tr>
+                {% endif %}
+            </table>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Jardín Infantil y Guardería</p>
+    </footer>
+</body>
+</html>

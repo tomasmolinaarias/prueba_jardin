@@ -5,6 +5,7 @@ from ..models import Niño, Apoderado, Evento, ListaUtiles, MensajeApoderado, So
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from django.db import transaction
+from django.utils import timezone
 
 
 ################################################################
@@ -298,12 +299,18 @@ def responder_mensaje(request, mensaje_id):
         respuesta = request.POST.get('respuesta')
         mensaje.respuesta = respuesta
         mensaje.estado = 'Resuelto'
-        mensaje.fecha_respuesta = now()
+        mensaje.fecha_respuesta = timezone.now()
         mensaje.save()
         messages.success(request, 'Mensaje respondido correctamente.')
         return redirect('ver_mensaje', mensaje_id=mensaje.id)
 
     return render(request, 'admin/mensajes/responder_mensaje.html', {'mensaje': mensaje})
+
+@login_required
+def ver_mensaje(request, mensaje_id):
+    mensaje = get_object_or_404(MensajeApoderado, id=mensaje_id)
+    return render(request, 'admin/mensajes/ver_mensaje.html', {'mensaje': mensaje})
+
 
 ################################################################
 # Contacto

@@ -22,7 +22,8 @@ from jardin_app.views.admin_views import (
     editar_util,
     eliminar_util,
     ver_solicitudes_contacto,
-    marcar_como_visto
+    marcar_como_visto,
+    ver_mensaje
 )
 from jardin_app.views.contact_views import formulario_contacto, contacto_exitoso
 from jardin_app.views.apoderado_views import (
@@ -89,12 +90,10 @@ urlpatterns = [
     ################################################################
     # mensajes
     ################################################################
-    path('dashboard/admin/mensajes/', ver_mensajes,
-         name='ver_mensajes'),  # Lista de mensajes
-    path('dashboard/admin/mensajes/<int:mensaje_id>/',
-         ver_mensajes, name='ver_mensaje'),  # Ver un mensaje
-    path('dashboard/admin/mensajes/<int:mensaje_id>/responder/',
-         responder_mensaje, name='responder_mensaje'),
+     path('dashboard/admin/mensajes/', ver_mensajes, name='ver_mensajes'),  # Lista de mensajes
+     path('dashboard/admin/mensajes/<int:mensaje_id>/', ver_mensaje, name='ver_mensaje'),  # Detalle de un mensaje específicoer un mensaje
+     path('dashboard/admin/mensajes/<int:mensaje_id>/responder/',
+          responder_mensaje, name='responder_mensaje'),
 
     ################################################################
     # útiles

@@ -2,19 +2,42 @@
 <html lang="es">
 <head>
     {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responder Mensaje</title>
+    <link rel="stylesheet" href="{% static 'css/mensajes/responder_mensaje.css' %}">
 </head>
 <body>
+    <!-- Navbar -->
     <header>
-        <h1>Responder Mensaje</h1>
+        <nav class="navbar">
+            <a href="{% url 'ver_mensajes' %}">⬅ Volver a Mensajes</a>
+            <a href="{% url 'logout' %}">Cerrar Sesión</a>
+        </nav>
     </header>
+
+    <!-- Main Content -->
     <main>
-        <form method="post">
-            {% csrf_token %}
-            <p><strong>Mensaje:</strong> {{ mensaje.mensaje }}</p>
-            <textarea name="respuesta" rows="5" cols="50" placeholder="Escribe tu respuesta aquí..." required></textarea>
-            <button type="submit">Enviar Respuesta</button>
-        </form>
+        <div class="container">
+            <h1>Responder Mensaje</h1>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <p><strong>Mensaje recibido:</strong></p>
+                    <p>{{ mensaje.mensaje }}</p>
+                </div>
+                <div class="form-group">
+                    <label for="respuesta">Tu Respuesta:</label>
+                    <textarea name="respuesta" id="respuesta" rows="5" placeholder="Escribe tu respuesta aquí..." required></textarea>
+                </div>
+                <button type="submit">Enviar Respuesta</button>
+            </form>
+        </div>
     </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Jardín Infantil y Guardería</p>
+    </footer>
 </body>
 </html>

@@ -1,37 +1,59 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
+  <head>
     {% load static %}
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Mensajes</title>
-    <link rel="stylesheet" href="{% static 'css/apoderado_vista/mensajes.css' %}">
-</head>
-<body>
+    <link rel="stylesheet" href="{% static 'css/apoderado_vista/mensajes.css' %}" />
+  </head>
+  <body>
     <header>
-        <nav class="navbar">
-            <a href="{% url 'pagina_apoderado' %}">⬅ Volver al Panel</a>
-            <a href="{% url 'logout' %}">Cerrar Sesión</a>
-        </nav>
+      <nav class="navbar">
+        <a href="{% url 'pagina_apoderado' %}">⬅ Volver al Panel</a>
+        <a href="{% url 'logout' %}">Cerrar Sesión</a>
+      </nav>
     </header>
     <main>
-        <h1>Mensajes</h1>
-        <a href="{% url 'enviar_mensaje' %}" class="btn btn-send">Enviar Mensaje</a>
-        <ul>
+      <h1>Mensajes</h1>
+      <form action="{% url 'enviar_mensaje' %}" method="get">
+        <button type="submit" class="btn-send">Enviar Mensaje</button>
+      </form>
+
+      <div class="messages-container">
+        {% if mensajes %}
+        <table>
+          <thead>
+            <tr>
+              <th>Mensaje</th>
+              <th>Estado</th>
+              <th>Respuesta</th>
+            </tr>
+          </thead>
+          <tbody>
             {% for mensaje in mensajes %}
-            <li>
-                <strong>{{ mensaje.mensaje }}</strong>
-                <p>Estado: {{ mensaje.estado }}</p>
+            <tr>
+              <td>{{ mensaje.mensaje }}</td>
+              <td>{{ mensaje.estado }}</td>
+              <td>
                 {% if mensaje.respuesta %}
-                <p>Respuesta: {{ mensaje.respuesta }}</p>
+                  {{ mensaje.respuesta }}
+                {% else %}
+                  Sin respuesta
                 {% endif %}
-            </li>
-            {% empty %}
-            <p>No has enviado mensajes.</p>
+              </td>
+            </tr>
             {% endfor %}
-        </ul>
+          </tbody>
+        </table>
+        {% else %}
+        <div class="no-messages-box">
+          <p class="no-messages">No has enviado mensajes.</p>
+        </div>
+        {% endif %}
+      </div>
     </main>
     <footer>
-        <p>&copy; 2024 Jardín Infantil y Guardería</p>
+      <p>&copy; 2024 Jardín Infantil y Guardería</p>
     </footer>
-</body>
+  </body>
 </html>
